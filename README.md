@@ -8,3 +8,6 @@
 - modo tela cheia
 - pwa
 - feed de músicas? kkkkkkkk
+    - implantar paginação
+    - algoritmo
+    - amizades/seguir? 
