@@ -1,0 +1,200 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #c7e9ff, #ffd6ec, #dec8ff);
+  color: #4a3b5f;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app {
+  width: min(1000px, 92%);
+  margin: 0 auto;
+  padding: 32px 0;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.75);
+  border: 3px solid white;
+  border-radius: 28px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 12px 30px rgba(101, 74, 137, 0.18);
+}
+
+.hero {
+  text-align: center;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: #8d6adf;
+}
+
+.hero p {
+  font-size: 1.1rem;
+}
+
+h2 {
+  color: #7b5ed6;
+}
+
+.notas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 14px;
+}
+
+.nota {
+  border: none;
+  border-radius: 22px;
+  padding: 18px 10px;
+  background: linear-gradient(180deg, #ffe0f1, #d7ecff);
+  color: #5f4b8b;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.nota:hover {
+  transform: translateY(-5px) scale(1.04);
+  box-shadow: 0 8px 18px rgba(125, 104, 180, 0.25);
+}
+
+.nota strong {
+  display: block;
+  font-size: 1.4rem;
+}
+
+.nota span {
+  font-size: 0.85rem;
+}
+
+.partitura {
+  min-height: 80px;
+  background: #fff8fd;
+  border: 2px dashed #caa8ff;
+  border-radius: 22px;
+  padding: 16px;
+  margin: 22px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.grande {
+  min-height: 120px;
+}
+
+.bolinha-nota {
+  background: #d7ecff;
+  border: 2px solid #b38cff;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: bold;
+}
+
+.nota-destaque {
+  background: #ffd6ec;
+  transform: scale(1.15);
+  box-shadow: 0 0 0 5px rgba(255, 214, 236, 0.6);
+}
+
+.vazio {
+  color: #8d7aa7;
+  font-style: italic;
+}
+
+.acoes,
+.salvar,
+.acoes-musica {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.acoes button,
+.salvar button,
+.acoes-musica button,
+.modo-tocar button {
+  border: none;
+  border-radius: 999px;
+  padding: 11px 18px;
+  background: #bca7ff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.acoes button:hover,
+.salvar button:hover,
+.acoes-musica button:hover,
+.modo-tocar button:hover {
+  background: #9d82f0;
+  transform: scale(1.04);
+}
+
+.salvar {
+  margin-top: 18px;
+}
+
+.salvar input {
+  flex: 1;
+  min-width: 220px;
+  border: 2px solid #caa8ff;
+  border-radius: 999px;
+  padding: 12px 18px;
+  outline: none;
+  color: #4a3b5f;
+}
+
+.salvar input:focus {
+  border-color: #8d6adf;
+}
+
+.lista-salvas {
+  display: grid;
+  gap: 12px;
+}
+
+.musica-salva {
+  background: #fff8fd;
+  border-radius: 22px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.musica-salva h3 {
+  margin: 0;
+  color: #7b5ed6;
+}
+
+.musica-salva p {
+  margin: 4px 0 0;
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 18px;
+  }
+
+  .acoes button,
+  .salvar button,
+  .acoes-musica button,
+  .modo-tocar button {
+    flex: 1;
+  }
+}
