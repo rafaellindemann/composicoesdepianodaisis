@@ -8,6 +8,7 @@
 - modo tela cheia
 - pwa
 - feed de músicas? kkkkkkkk
-    - implantar paginação
+    - implantar paginação (feed, perfil, portfólio, descobrir...)
     - algoritmo
     - amizades/seguir? 
+    - nome!!! (iMelody, tomTom, myMusic, tocaAqui)
