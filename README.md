@@ -13,3 +13,9 @@
     - algoritmo de recomendações
     - amizades/seguir? 
     - nome!!! (iMelody, tomTom, myMusic, tocaAqui)
+
+
+
+---
+
+[{"id":1782256002635,"nome":"teste1 export","notas":[{"letra":"D","nome":"Ré","freq":293.66},{"letra":"C","nome":"Dó","freq":261.63},{"letra":"E","nome":"Mi","freq":329.63}],"bpm":100}]

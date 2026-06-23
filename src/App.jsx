@@ -120,6 +120,39 @@ function App() {
     setTocando(false);
   }
 
+  async function exportarMelodias() {
+    const conteudo = localStorage.getItem("melodias") || "[]";
+
+    try {
+      await navigator.clipboard.writeText(conteudo);
+      alert("Melodias copiadas para a área de transferência!");
+    } catch (erro) {
+      alert("Não foi possível copiar. Verifique a permissão do navegador.");
+      console.error(erro);
+    }
+  }
+
+  async function importarMelodias() {
+    try {
+      const texto = await navigator.clipboard.readText();
+      const melodiasImportadas = JSON.parse(texto);
+
+      if (!Array.isArray(melodiasImportadas)) {
+        alert("O conteúdo importado não parece ser uma lista de melodias.");
+        return;
+      }
+
+      localStorage.setItem("melodias", JSON.stringify(melodiasImportadas));
+      setSalvas(melodiasImportadas);
+      setMelodiaAberta(null);
+
+      alert("Melodias importadas com sucesso!");
+    } catch (erro) {
+      alert("Não foi possível importar. Confira se o conteúdo copiado é válido.");
+      console.error(erro);
+    }
+  }
+
   return (
     <main className="app">
       <section className="card hero">
@@ -172,7 +205,6 @@ function App() {
           <button onClick={salvarMelodia}>Salvar</button>
         </div>
 
-
         <div className="controle-tempo">
           <label htmlFor="bpm">
             Velocidade: <strong>{bpm} BPM</strong>
@@ -187,7 +219,6 @@ function App() {
             onChange={(e) => setBpm(Number(e.target.value))}
           />
         </div>
-
       </section>
 
       <section className="card">
@@ -247,6 +278,16 @@ function App() {
           </button>
         </section>
       )}
+
+      <section className="card backup">
+        <h2>Backup</h2>
+        <p>Copie suas melodias ou importe melodias salvas de outro navegador.</p>
+
+        <div className="acoes-backup">
+          <button onClick={exportarMelodias}>Exportar</button>
+          <button onClick={importarMelodias}>Importar</button>
+        </div>
+      </section>
     </main>
   );
 }

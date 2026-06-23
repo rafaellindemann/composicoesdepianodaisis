@@ -122,7 +122,8 @@ h2 {
 
 .acoes,
 .salvar,
-.acoes-musica {
+.acoes-musica,
+.acoes-backup {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
@@ -131,7 +132,8 @@ h2 {
 .acoes button,
 .salvar button,
 .acoes-musica button,
-.modo-tocar button {
+.modo-tocar button,
+.acoes-backup button {
   border: none;
   border-radius: 999px;
   padding: 8px 13px;
@@ -145,7 +147,8 @@ h2 {
 .acoes button:hover,
 .salvar button:hover,
 .acoes-musica button:hover,
-.modo-tocar button:hover {
+.modo-tocar button:hover,
+.acoes-backup button:hover {
   background: #9d82f0;
   transform: scale(1.03);
 }
@@ -199,6 +202,31 @@ h2 {
   margin: 0 0 8px;
 }
 
+.backup p {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  color: #6c5a82;
+}
+
+.controle-tempo {
+  background: #fff8fd;
+  border: 2px solid #e3c8ff;
+  border-radius: 16px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+}
+
+.controle-tempo label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.controle-tempo input {
+  width: 100%;
+}
+
 @media (max-width: 700px) {
   .notas {
     grid-template-columns: repeat(7, 1fr);
@@ -220,7 +248,8 @@ h2 {
   .acoes button,
   .salvar button,
   .acoes-musica button,
-  .modo-tocar button {
+  .modo-tocar button,
+  .acoes-backup button {
     padding: 7px 10px;
     font-size: 0.85rem;
   }
@@ -274,26 +303,7 @@ h2 {
     font-size: 0.68rem;
   }
 
-  /* .salvar {
-    margin-top: 8px;
-  } */
-}
-
-.controle-tempo {
-  background: #fff8fd;
-  border: 2px solid #e3c8ff;
-  border-radius: 16px;
-  padding: 8px 10px;
-  margin-bottom: 8px;
-}
-
-.controle-tempo label {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  margin-bottom: 4px;
-}
-
-.controle-tempo input {
-  width: 100%;
+  .backup p {
+    display: none;
+  }
 }
