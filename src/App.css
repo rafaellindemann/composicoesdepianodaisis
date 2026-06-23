@@ -15,18 +15,18 @@ input {
 }
 
 .app {
-  width: min(1000px, 92%);
+  width: min(1000px, 96%);
   margin: 0 auto;
-  padding: 32px 0;
+  padding: 12px 0;
 }
 
 .card {
   background: rgba(255, 255, 255, 0.75);
-  border: 3px solid white;
-  border-radius: 28px;
-  padding: 24px;
-  margin-bottom: 24px;
-  box-shadow: 0 12px 30px rgba(101, 74, 137, 0.18);
+  border: 2px solid white;
+  border-radius: 18px;
+  padding: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 8px 20px rgba(101, 74, 137, 0.16);
 }
 
 .hero {
@@ -35,28 +35,32 @@ input {
 
 .hero h1 {
   margin: 0;
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(1.5rem, 4vw, 2.6rem);
   color: #8d6adf;
 }
 
 .hero p {
-  font-size: 1.1rem;
+  margin: 4px 0 0;
+  font-size: 0.95rem;
 }
 
 h2 {
+  margin: 0 0 8px;
   color: #7b5ed6;
+  font-size: 1.2rem;
 }
 
 .notas {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-top: 12px;
 }
 
 .nota {
   border: none;
-  border-radius: 22px;
-  padding: 18px 10px;
+  border-radius: 14px;
+  padding: 10px 6px;
   background: linear-gradient(180deg, #ffe0f1, #d7ecff);
   color: #5f4b8b;
   cursor: pointer;
@@ -64,60 +68,63 @@ h2 {
 }
 
 .nota:hover {
-  transform: translateY(-5px) scale(1.04);
-  box-shadow: 0 8px 18px rgba(125, 104, 180, 0.25);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 6px 14px rgba(125, 104, 180, 0.22);
 }
 
 .nota strong {
   display: block;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 }
 
 .nota span {
+  display: block;
   font-size: 0.85rem;
 }
 
 .partitura {
-  min-height: 80px;
+  min-height: 56px;
   background: #fff8fd;
   border: 2px dashed #caa8ff;
-  border-radius: 22px;
-  padding: 16px;
-  margin: 22px 0;
+  border-radius: 16px;
+  padding: 8px;
+  margin: 8px 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 6px;
   align-items: center;
 }
 
 .grande {
-  min-height: 120px;
+  min-height: 70px;
 }
 
 .bolinha-nota {
   background: #d7ecff;
   border: 2px solid #b38cff;
   border-radius: 999px;
-  padding: 10px 16px;
+  padding: 6px 11px;
   font-weight: bold;
+  font-size: 0.95rem;
 }
 
 .nota-destaque {
   background: #ffd6ec;
-  transform: scale(1.15);
-  box-shadow: 0 0 0 5px rgba(255, 214, 236, 0.6);
+  transform: scale(1.12);
+  box-shadow: 0 0 0 4px rgba(255, 214, 236, 0.6);
 }
 
 .vazio {
   color: #8d7aa7;
   font-style: italic;
+  margin: 0;
 }
 
 .acoes,
 .salvar,
 .acoes-musica {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
@@ -127,7 +134,7 @@ h2 {
 .modo-tocar button {
   border: none;
   border-radius: 999px;
-  padding: 11px 18px;
+  padding: 8px 13px;
   background: #bca7ff;
   color: white;
   font-weight: bold;
@@ -140,19 +147,19 @@ h2 {
 .acoes-musica button:hover,
 .modo-tocar button:hover {
   background: #9d82f0;
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 
 .salvar {
-  margin-top: 18px;
+  margin-top: 12px;
 }
 
 .salvar input {
   flex: 1;
-  min-width: 220px;
+  min-width: 180px;
   border: 2px solid #caa8ff;
   border-radius: 999px;
-  padding: 12px 18px;
+  padding: 9px 14px;
   outline: none;
   color: #4a3b5f;
 }
@@ -163,16 +170,16 @@ h2 {
 
 .lista-salvas {
   display: grid;
-  gap: 12px;
+  gap: 8px;
 }
 
 .musica-salva {
   background: #fff8fd;
-  border-radius: 22px;
-  padding: 16px;
+  border-radius: 16px;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
-  gap: 14px;
+  gap: 10px;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -180,21 +187,94 @@ h2 {
 .musica-salva h3 {
   margin: 0;
   color: #7b5ed6;
+  font-size: 1rem;
 }
 
 .musica-salva p {
-  margin: 4px 0 0;
+  margin: 2px 0 0;
+  font-size: 0.9rem;
 }
 
-@media (max-width: 600px) {
-  .card {
-    padding: 18px;
+.modo-tocar p {
+  margin: 0 0 8px;
+}
+
+@media (max-width: 700px) {
+  .notas {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+  }
+
+  .nota {
+    padding: 8px 4px;
+  }
+
+  .nota strong {
+    font-size: 1.25rem;
+  }
+
+  .nota span {
+    font-size: 0.7rem;
   }
 
   .acoes button,
   .salvar button,
   .acoes-musica button,
   .modo-tocar button {
-    flex: 1;
+    padding: 7px 10px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .app {
+    padding: 6px 0;
+  }
+
+  .card {
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 14px;
+  }
+
+  .hero p {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 1.4rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+
+  .partitura {
+    min-height: 46px;
+    padding: 6px;
+    margin: 6px 0;
+  }
+
+  .bolinha-nota {
+    padding: 4px 9px;
+    font-size: 0.85rem;
+  }
+
+  .nota {
+    padding: 6px 4px;
+    border-radius: 10px;
+  }
+
+  .nota strong {
+    font-size: 1.15rem;
+  }
+
+  .nota span {
+    font-size: 0.68rem;
+  }
+
+  .salvar {
+    margin-top: 8px;
   }
 }

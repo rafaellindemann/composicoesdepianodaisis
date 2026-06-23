@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 const NOTAS = [
-  { nome: "Dó", freq: 261.63, tecla: "A" },
-  { nome: "Ré", freq: 293.66, tecla: "S" },
-  { nome: "Mi", freq: 329.63, tecla: "D" },
-  { nome: "Fá", freq: 349.23, tecla: "F" },
-  { nome: "Sol", freq: 392.0, tecla: "G" },
-  { nome: "Lá", freq: 440.0, tecla: "H" },
-  { nome: "Si", freq: 493.88, tecla: "J" },
-  { nome: "Dó+", freq: 523.25, tecla: "K" },
+  { letra: "C", nome: "Dó", freq: 261.63 },
+  { letra: "D", nome: "Ré", freq: 293.66 },
+  { letra: "E", nome: "Mi", freq: 329.63 },
+  { letra: "F", nome: "Fá", freq: 349.23 },
+  { letra: "G", nome: "Sol", freq: 392.0 },
+  { letra: "A", nome: "Lá", freq: 440.0 },
+  { letra: "B", nome: "Si", freq: 493.88 },
 ];
 
 function tocarNota(freq) {
@@ -93,7 +92,7 @@ function App() {
   }
 
   async function tocarMelodia(notas) {
-    if (tocando) return;
+    if (tocando || notas.length === 0) return;
 
     setTocando(true);
 
@@ -112,27 +111,11 @@ function App() {
     <main className="app">
       <section className="card hero">
         <h1>Compositor de Melodias</h1>
-        <p>
-          Escolha as notas, monte sua música e salve para tocar depois no
-          teclado.
-        </p>
+        <p>Monte sua música escolhendo as notas.</p>
       </section>
 
       <section className="card">
         <h2>Compor nova melodia</h2>
-
-        <div className="notas">
-          {NOTAS.map((nota) => (
-            <button
-              key={nota.nome}
-              className="nota"
-              onClick={() => adicionarNota(nota)}
-            >
-              <strong>{nota.nome}</strong>
-              <span>tecla {nota.tecla}</span>
-            </button>
-          ))}
-        </div>
 
         <div className="partitura">
           {melodia.length === 0 ? (
@@ -140,16 +123,29 @@ function App() {
           ) : (
             melodia.map((nota, index) => (
               <span key={index} className="bolinha-nota">
-                {nota.nome}
+                {nota.letra}
               </span>
             ))
           )}
         </div>
 
         <div className="acoes">
-          <button onClick={() => tocarMelodia(melodia)}>Tocar melodia</button>
+          <button onClick={() => tocarMelodia(melodia)}>Tocar</button>
           <button onClick={removerUltimaNota}>Apagar última</button>
           <button onClick={limparMelodia}>Limpar</button>
+        </div>
+
+        <div className="notas">
+          {NOTAS.map((nota) => (
+            <button
+              key={nota.letra}
+              className="nota"
+              onClick={() => adicionarNota(nota)}
+            >
+              <strong>{nota.letra}</strong>
+              <span>{nota.nome}</span>
+            </button>
+          ))}
         </div>
 
         <div className="salvar">
@@ -196,7 +192,7 @@ function App() {
       {melodiaAberta && (
         <section className="card modo-tocar">
           <h2>{melodiaAberta.nome}</h2>
-          <p>Use esta sequência para tocar no teclado:</p>
+          <p>Use esta sequência para tocar:</p>
 
           <div className="partitura grande">
             {melodiaAberta.notas.map((nota, index) => (
@@ -208,7 +204,7 @@ function App() {
                     : "bolinha-nota"
                 }
               >
-                {nota.nome}
+                {nota.letra}
               </span>
             ))}
           </div>
