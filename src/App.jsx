@@ -11,7 +11,7 @@ const NOTAS = [
   { letra: "B", nome: "Si", freq: 493.88 },
 ];
 
-function tocarNota(freq) {
+function tocarNota(freq, duracao = 450) {
   const audio = new AudioContext();
   const oscilador = audio.createOscillator();
   const volume = audio.createGain();
@@ -22,11 +22,16 @@ function tocarNota(freq) {
   oscilador.connect(volume);
   volume.connect(audio.destination);
 
+  const duracaoEmSegundos = duracao / 1000;
+
   volume.gain.setValueAtTime(0.25, audio.currentTime);
-  volume.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + 0.45);
+  volume.gain.exponentialRampToValueAtTime(
+    0.001,
+    audio.currentTime + duracaoEmSegundos
+  );
 
   oscilador.start();
-  oscilador.stop(audio.currentTime + 0.45);
+  oscilador.stop(audio.currentTime + duracaoEmSegundos);
 }
 
 function App() {
@@ -36,6 +41,9 @@ function App() {
   const [melodiaAberta, setMelodiaAberta] = useState(null);
   const [tocando, setTocando] = useState(false);
   const [notaAtual, setNotaAtual] = useState(null);
+  const [bpm, setBpm] = useState(100);
+
+  const tempoDaNota = 60000 / bpm;
 
   useEffect(() => {
     const melodiasSalvas = JSON.parse(localStorage.getItem("melodias")) || [];
@@ -43,7 +51,7 @@ function App() {
   }, []);
 
   function adicionarNota(nota) {
-    tocarNota(nota.freq);
+    tocarNota(nota.freq, tempoDaNota);
     setMelodia([...melodia, nota]);
   }
 
@@ -65,6 +73,7 @@ function App() {
       id: Date.now(),
       nome,
       notas: melodia,
+      bpm,
     };
 
     const novasSalvas = [...salvas, novaMelodia];
@@ -78,6 +87,10 @@ function App() {
   function abrirMelodia(musica) {
     setMelodiaAberta(musica);
     setNotaAtual(null);
+
+    if (musica.bpm) {
+      setBpm(musica.bpm);
+    }
   }
 
   function excluirMelodia(id) {
@@ -98,9 +111,9 @@ function App() {
 
     for (let i = 0; i < notas.length; i++) {
       setNotaAtual(i);
-      tocarNota(notas[i].freq);
+      tocarNota(notas[i].freq, tempoDaNota);
 
-      await new Promise((resolve) => setTimeout(resolve, 550));
+      await new Promise((resolve) => setTimeout(resolve, tempoDaNota));
     }
 
     setNotaAtual(null);
@@ -158,6 +171,23 @@ function App() {
 
           <button onClick={salvarMelodia}>Salvar</button>
         </div>
+
+
+        <div className="controle-tempo">
+          <label htmlFor="bpm">
+            Velocidade: <strong>{bpm} BPM</strong>
+          </label>
+
+          <input
+            id="bpm"
+            type="range"
+            min="40"
+            max="200"
+            value={bpm}
+            onChange={(e) => setBpm(Number(e.target.value))}
+          />
+        </div>
+
       </section>
 
       <section className="card">
@@ -171,7 +201,10 @@ function App() {
               <article key={musica.id} className="musica-salva">
                 <div>
                   <h3>{musica.nome}</h3>
-                  <p>{musica.notas.length} notas</p>
+                  <p>
+                    {musica.notas.length} notas
+                    {musica.bpm ? ` • ${musica.bpm} BPM` : ""}
+                  </p>
                 </div>
 
                 <div className="acoes-musica">
